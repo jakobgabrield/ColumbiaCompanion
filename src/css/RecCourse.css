@@ -1,0 +1,28 @@
+.RecCourse {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    background-color: grey;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.tags {
+    justify-self: center;
+    align-self: center;
+}
+
+.RecommendationsPage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tag {
+    margin: 5px;
+}
+
+.get-btn {
+    width: 15%;
+    margin: 30px;
+}

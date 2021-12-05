@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react"
+import Header from './components/Header';
+import LoggedIn from './components/LoggedIn';
+import {
+  BrowserRouter,
+} from 'react-router-dom';
+import AuthenticationFlow from './components/AuthenticationFlow';
+import useUser from './hooks/useUser';
+import AddSchoolPage from './pages/AddSchoolPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const {user, setUser, logoutUser} = useUser();
+
+  // return <ProfilePage />
+
+  if (!user) {
+    return <AuthenticationFlow signInUser={setUser} />
+  } else {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Header logoutUser={logoutUser} />
+          <LoggedIn />
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;

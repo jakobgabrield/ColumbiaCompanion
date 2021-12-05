@@ -1,0 +1,18 @@
+.Header ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Header ul div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.nav-item {
+    margin: 20px;
+    text-decoration: none;
+    color: rgb(45, 151, 212);
+    cursor: pointer;
+}
