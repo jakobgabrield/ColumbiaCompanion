@@ -29,16 +29,7 @@ export default function LoginPage({ signIn }) {
 
     return (
         <div className="LoginPage">
-            {/* <GoogleLogin 
-                clientId={clientId}
-                buttonText="Login"
-                onSuccess={onSuccess}
-                onFailure={onFailure}
-                cookiePolicy={'single-host-origin'}
-                style={{marginTop: '100px'}}
-                isSignedIn={true}
-            /> */}
-
+            <h1>Columbia Companion</h1>
             <input className="item" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
             <input className="item" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
             <Button className="item"onClick={signInUser}>Submit</Button>
