@@ -11,6 +11,7 @@ export default function ProfilePage() {
     const [editableClass, setEditableClass] = useState({});
     const [courses, setCourses] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
+    const [allCourses, setAllCourses] = useState([]);
 
     const customStyles = {
         content: {
@@ -25,11 +26,22 @@ export default function ProfilePage() {
 
     useEffect(() => {
         getReviews();
+        getCourses();
     }, [editableClass]);
 
     const getReviews = async () => {
         let res = await axios.get(`https://amqotblo53.execute-api.us-east-1.amazonaws.com/alpha/review/${user.user_id}`);
-        setCourses(res.data);
+        let c = res.data;
+        c.sort((c1, c2) => c1.CourseName > c2.CourseName ? 1 : -1);
+        setCourses(c);
+    }
+
+    const getCourses = async () => {
+        let res = await axios.get(`https://amqotblo53.execute-api.us-east-1.amazonaws.com/alpha/course`);
+        console.log(res.data);
+        let c = res.data;
+        c.sort((c1, c2) => c1.CourseName > c2.CourseName ? 1 : -1);
+        setAllCourses(c);
     }
 
     const deleteClass = async review_id => {
@@ -80,18 +92,18 @@ export default function ProfilePage() {
 
     return (
         <div className="ProfilePage">
-            <div className="info">
-                <div>Student Name: {user.name}</div>
-                <div>Major: {user.major}</div>
-                <div>Minor: {user.minor}</div>
-                <div>Track: {user.track}</div>
-            </div>
+            {/* <div className="info">
+                <div className="head-labels"><span className="italic">Student Name:</span> {user.name}</div>
+                <div className="head-labels"><span className="italic">Major:</span> {user.major}</div>
+                <div className="head-labels"><span className="italic">Minor:</span> {user.minor}</div>
+                <div className="head-labels"><span className="italic">Track:</span> {user.track}</div>
+            </div> */}
             <h3>Past Enrollment</h3>
             <div className="courses">
                 {courses.map((c,i) => {
                     return <Course key={c.review_id} setEditClass={setEditClass} deleteClass={() => deleteClass(c.review_id)} index={i} courseName={c.name} instructor={c.instructor} courseRating={c.courseRating} instructorRating={c.instructorRating} />
                 })}
-                <button className="addBtn" onClick={addCourse}>+</button>
+                <button className="addBtn" onClick={addCourse}>Add Course</button>
             </div>
             <Modal 
                 isOpen={modalIsOpen}
@@ -99,8 +111,20 @@ export default function ProfilePage() {
                 ariaHideApp={false}
             >
                 <div>
-                    <input className="element" placeholder="Course Name" value={editableClass.name} onChange={e => editClass("name", e.target.value)}></input>
-                    <input className="element" placeholder="Instructor" value={editableClass.instructor} onChange={e => editClass("instructor", e.target.value)}></input>
+                    {/* <input className="element" placeholder="Course Name" value={editableClass.name} onChange={e => editClass("name", e.target.value)}></input> */}
+                    <select onChange={e => editClass("name", e.target.value)} value={editableClass.name}>
+                        <option value="select">Select</option>
+                        {allCourses.map(course => {
+                            return <option value={course.CourseName}>{course.CourseName}</option>
+                        })}
+                    </select>
+                    {/* <input className="element" placeholder="Instructor" value={editableClass.instructor} onChange={e => editClass("instructor", e.target.value)}></input> */}
+                    <select onChange={e => editClass("instructor", e.target.value)} value={editableClass.instructor}>
+                        <option value="select">Select</option>
+                        {allCourses.map(course => {
+                            return <option value={course.Instructor}>{course.Instructor}</option>
+                        })}
+                    </select>
                     <div className="element">
                         <label>Course Rating</label>
                         <select id="courseRating" onChange={e => editClass("courseRating", e.target.value)} value={editableClass.courseRating}>

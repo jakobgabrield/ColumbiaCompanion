@@ -18,14 +18,28 @@ h3 {
 }
 
 .addBtn {
-    width: 250px;
-    height: 175px;
+    width: 100px;
+    height: 75px;
+    align-self: center;
+    justify-self: center;
     padding: 10px;
     margin: 10px;
     border-radius: 8px;
+    background-color: rgb(45, 151, 212);
+    border: rgb(45, 151, 212) solid 2px;
+    color: white;
+    font-weight: bold;
 }
 
 .element {
     margin: 10px;
     padding: 5px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.head-labels {
+    font-size: 22px;
 }

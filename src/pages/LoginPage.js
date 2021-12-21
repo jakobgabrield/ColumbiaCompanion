@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button"
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import bcrypt from 'bcryptjs'
+import logo from '../images/logo.png'
 
 export default function LoginPage({ signIn }) {
     const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ export default function LoginPage({ signIn }) {
 
     return (
         <div className="LoginPage">
-            <h1>Columbia Companion</h1>
+            <img className="logo" src={logo} />
             <input className="item" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
             <input className="item" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
             <Button className="item"onClick={signInUser}>Submit</Button>

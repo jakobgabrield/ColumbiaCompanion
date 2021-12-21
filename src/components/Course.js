@@ -15,10 +15,10 @@ export default function Course({ setEditClass, deleteClass, index, courseName, i
                 setEditClass(index)
             }>Edit</button>
                 </div>
-                <text>Course: {courseName}</text>
-                <text>Instructor: {instructor}</text>
-                <text>Course Rating: {courseRating}</text>
-                <text>Instructor Rating: {instructorRating}</text>
+                <text><span className="italic">Course:</span> {courseName}</text>
+                <text><span className="italic">Instructor:</span> {instructor}</text>
+                <text><span className="italic">Course Rating:</span> {courseRating}</text>
+                <text><span className="italic">Instructor Rating:</span> {instructorRating}</text>
             </div>
         </div>
     )

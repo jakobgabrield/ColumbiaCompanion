@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button"
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import bcrypt from 'bcryptjs'
+import logo from '../images/logo.png'
 
 export default function SignupPage() {
 
@@ -30,7 +31,7 @@ export default function SignupPage() {
 
     return (
         <div className="SignupPage">
-            <h1>Columbia Companion</h1>
+            <img className="logo" src={logo} />
             <input className="item" placeholder="Name" onChange={e => setName(e.target.value)} value={name} />
             <input className="item" placeholder="Email" onChange={e => setEmail(e.target.value)} value={email} />
             <input className="item" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} value={password} />

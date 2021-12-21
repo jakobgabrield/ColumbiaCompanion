@@ -16,3 +16,15 @@
     color: rgb(45, 151, 212);
     cursor: pointer;
 }
+
+.logo {
+    width: 200px;
+    height: 200px;
+}
+
+.info-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px;
+}
